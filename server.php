@@ -30,23 +30,32 @@ function onConnect( $client ) {
     printf( "[%s] Connected at port %d\n", $client->getAddress(), $client->getPort() );
     
     while( true ) {
+        // read from the client
         $read = $client->read();
-        if( $read != '' ) {
-            $client->send( '[' . date( DATE_RFC822 ) . '] ' . $read  );
-        }
-        else {
-            break;
-        }
-        
-        if( preg_replace( '/[^a-z]/', '', $read ) == 'exit' ) {
-            break;
-        }
+
         if( $read === null ) {
             printf( "[%s] Disconnected\n", $client->getAddress() );
             return false;
         }
-        else {
-            printf( "[%s] recieved: %s", $client->getAddress(), $read );
+
+        // trim whitespaces from message
+        $read = trim($read);
+
+        printf( "[%s] received: %s\n", $client->getAddress(), $read );
+
+        switch($read){
+            case 'date':
+                $client->send( '[' . date( DATE_RFC822 ) . '] ' . $read . "\r\n"  );
+                break;
+            case 'd':
+                $client->send( '[' . date( DATE_RFC822 ) . '] ' . $read . "\r\n"  );
+                break;
+            case '':
+                break 2;
+            case 'exit':
+                break 2;
+            default:
+                break 2;
         }
     }
     $client->close();
