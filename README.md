@@ -1,6 +1,7 @@
 Muilti Threaded Socket Server based on pcntl_fork()
 ====================
-Examaple created for http://systemsarchitect.net/multi-threaded-socket-server-in-php-with-fork/
+Forked from: https://github.com/lukaszkujawa/php-multithreaded-socket-server
+Code explanation on http://systemsarchitect.net/multi-threaded-socket-server-in-php-with-fork/
 
 
 Requirements
