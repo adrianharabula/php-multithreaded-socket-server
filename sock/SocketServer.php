@@ -76,15 +76,8 @@ class SocketServer {
                 
             $socketClient = new SocketClient( $client );
                 
-            if( is_array( $this->connectionHandler ) ) {
-                $object = $this->connectionHandler[0];
-                $method = $this->connectionHandler[1];
-                $object->$method( $socketClient );
-            }
-            else {
-                $function = $this->connectionHandler;
-                $function( $socketClient );
-            }
+            $function = $this->connectionHandler;
+            $function( $socketClient );
         }
     }
 
