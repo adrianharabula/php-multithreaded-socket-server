@@ -75,9 +75,9 @@ class SocketServer {
             }
                 
             $socketClient = new SocketClient( $client );
-                
-            $function = $this->connectionHandler;
-            $function( $socketClient );
+            
+            $onConnect = $this->connectionHandler;
+            $onConnect( $socketClient );
         }
     }
 
