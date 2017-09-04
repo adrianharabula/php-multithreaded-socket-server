@@ -5,19 +5,22 @@ Examaple created for http://systemsarchitect.net/multi-threaded-socket-server-in
 
 Requirements
 ---------------------
-> PHP5	
->
-> sockets (http://www.php.net/manual/en/sockets.installation.php)
->
-> pcntl (http://www.php.net/manual/en/pcntl.installation.php)
+> Docker
 
 Installation
 ---------------------
-> git clone https://github.com/lukaszkujawa/php-multithreaded-socket-server.git
+> git clone git@github.com:adrianharabula/php-multithreaded-socket-server.git
+
+Build Docker image
+---------------------
+> docker build -t php-socket-multi .
 
 Run
 ---------------------
-> php server.php
->
-> telnet 127.0.0.1 4444
+> docker run -it --rm -p 4444:4444 --name php-socket-server-multi php-socket-multi
+
+
+Connect to the created server
+---------------------
+> telnet localhost 4444
 

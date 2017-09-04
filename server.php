@@ -56,7 +56,7 @@ function onConnect( $client ) {
 
 require "sock/SocketServer.php";
 
-$server = new \Sock\SocketServer();
+$server = new \Sock\SocketServer(4444, '0.0.0.0');
 $server->init();
 $server->setConnectionHandler( 'onConnect' );
 $server->listen();
