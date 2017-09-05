@@ -50,6 +50,9 @@ function onConnect( $client ) {
             case 'd':
                 $client->send( '[' . date( DATE_RFC822 ) . '] ' . $read . "\r\n"  );
                 break;
+            case 'test':
+                $client->send ( "OK\r\n" );
+                break 2;
             case '':
                 break 2;
             case 'exit':
