@@ -63,7 +63,9 @@ function onConnect( $client ) {
     }
     $client->close();
     printf( "[%s] Disconnected\n", $client->getAddress() );
-    
+
+    // exit child process
+    exit;
 }
 
 require "sock/SocketServer.php";
