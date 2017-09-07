@@ -42,24 +42,26 @@ function onConnect( $client ) {
         $read = trim($read);
 
         printf( "[%s] received: %s\n", $client->getAddress(), $read );
+        $client->send ( "COP String sent successfully!\r\n" );
+        break;
 
-        switch($read){
-            case 'date':
-                $client->send( '[' . date( DATE_RFC822 ) . '] ' . $read . "\r\n"  );
-                break;
-            case 'd':
-                $client->send( '[' . date( DATE_RFC822 ) . '] ' . $read . "\r\n"  );
-                break;
-            case 'test':
-                $client->send ( "OK\r\n" );
-                break 2;
-            case '':
-                break 2;
-            case 'exit':
-                break 2;
-            default:
-                break 2;
-        }
+        // switch($read){
+        //     case 'date':
+        //         $client->send( '[' . date( DATE_RFC822 ) . '] ' . $read . "\r\n"  );
+        //         break;
+        //     case 'd':
+        //         $client->send( '[' . date( DATE_RFC822 ) . '] ' . $read . "\r\n"  );
+        //         break;
+        //     case 'test':
+        //         $client->send ( "OK\r\n" );
+        //         break 2;
+        //     case '':
+        //         break 2;
+        //     case 'exit':
+        //         break 2;
+        //     default:
+        //         break 2;
+        // }
     }
     $client->close();
     printf( "[%s] Disconnected\n", $client->getAddress() );
