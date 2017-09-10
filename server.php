@@ -51,8 +51,8 @@ function onConnect( $client ) {
         // trim whitespaces from message
         $read = trim($read);
 
-        // $client->send ( "String sent successfully!\r\n" );
         printf( "[%s] [%s] received: %s\n", get_time(), $client->getAddress(), $read );
+        // $client->send ( "String sent successfully!\r\n" );
         break;
 
         // switch($read){
@@ -82,14 +82,17 @@ function onConnect( $client ) {
 
 require "sock/SocketServer.php";
 
-
+// if no arguments passed to script
 if ($argc < 1)
 {
+    // bind the new server to default ip 0.0.0.0 and port 4444
     $server = new \Sock\SocketServer();
 }
+// exec script with `php server.php 0.0.0.0 4444`
 else if ($argc == 3)
 {
-    $server = new \Sock\SocketServer($argv[2], $argv[1]);
+    // bind the new server to the specified ip and port
+    $server = new \Sock\SocketServer($argv[1], $argv[2]);
 }
 else
 {
