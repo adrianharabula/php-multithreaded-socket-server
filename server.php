@@ -51,8 +51,8 @@ function onConnect( $client ) {
         // trim whitespaces from message
         $read = trim($read);
 
-        // $client->send ( "String sent successfully!\r\n" );
         printf( "[%s] [%s] received: %s\n", get_time(), $client->getAddress(), $read );
+        // $client->send ( "String sent successfully!\r\n" );
         break;
 
         // switch($read){
@@ -82,7 +82,20 @@ function onConnect( $client ) {
 
 require "sock/SocketServer.php";
 
-$server = new \Sock\SocketServer(4444, '0.0.0.0');
+
+if ($argc < 1)
+{
+    $server = new \Sock\SocketServer();
+}
+else if ($argc == 3)
+{
+    $server = new \Sock\SocketServer($argv[2], $argv[1]);
+}
+else
+{
+    exit("invalid number of arguments passed\n");
+}
+
 $server->init();
 $server->setConnectionHandler( 'onConnect' );
 $server->listen();
