@@ -51,8 +51,8 @@ function onConnect( $client ) {
         // trim whitespaces from message
         $read = trim($read);
 
-        printf( "[%s] [%s] received: %s\n", get_time(), $client->getAddress(), $read );
         // $client->send ( "String sent successfully!\r\n" );
+        printf( "[%s] [%s] received: %s\n", get_time(), $client->getAddress(), $read );
         break;
 
         // switch($read){
