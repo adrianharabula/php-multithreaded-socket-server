@@ -62,7 +62,7 @@ class SocketServer {
     }
     
     protected function beforeServerLoop() {
-        printf( "Listening on %s:%d...\n", $this->address, $this->port );
+        printf( "[%s] Listening on %s:%d...\n", date(DATE_RFC2822), $this->address, $this->port );
     }
     
     protected function serverLoop() {

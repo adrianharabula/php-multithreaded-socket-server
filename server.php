@@ -14,6 +14,16 @@ if( ! extension_loaded('pcntl' ) ) {
 }
 
 /**
+ * Format time for logging messages
+ *
+ * @return void
+ */
+function get_time()
+{
+    return date(DATE_RFC2822);
+}
+
+/**
  * Connection handler
  */
 function onConnect( $client ) {
@@ -27,22 +37,22 @@ function onConnect( $client ) {
     }
     
     $read = '';
-    printf( "[%s] Connected at port %d\n", $client->getAddress(), $client->getPort() );
+    printf( "[%s] [%s] Connected at port %d\n", get_time(), $client->getAddress(), $client->getPort() );
     
     while( true ) {
         // read from the client
         $read = $client->read();
 
         if( $read === null ) {
-            printf( "[%s] Disconnected\n", $client->getAddress() );
+            printf( "[%s] [%s] Disconnected\n", get_time(), $client->getAddress() );
             return false;
         }
 
         // trim whitespaces from message
         $read = trim($read);
 
-        printf( "[%s] received: %s\n", $client->getAddress(), $read );
-        $client->send ( "COP String sent successfully!\r\n" );
+        // $client->send ( "String sent successfully!\r\n" );
+        printf( "[%s] [%s] received: %s\n", get_time(), $client->getAddress(), $read );
         break;
 
         // switch($read){
@@ -64,7 +74,7 @@ function onConnect( $client ) {
         // }
     }
     $client->close();
-    printf( "[%s] Disconnected\n", $client->getAddress() );
+    printf( "[%s] [%s] Disconnected\n", get_time(), $client->getAddress() );
 
     // exit child process
     exit;
