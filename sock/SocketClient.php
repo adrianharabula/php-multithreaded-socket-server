@@ -22,6 +22,11 @@ class SocketClient {
     }
     
     public function read($len = 1024) {
+        /**
+         * Timeout functions if needed
+         */
+        //socket_set_option($this->connection, SOL_SOCKET, SO_RCVTIMEO, array('sec'=> 60, 'usec'=>0));
+        //socket_set_option($this->connection, SOL_SOCKET, SO_SNDTIMEO, array('sec'=> 60, 'usec'=>0));
         if ( ( $buf = @socket_read( $this->connection, $len, PHP_BINARY_READ  ) ) === false ) {
                 return null;
         }
